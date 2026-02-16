@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { Building2, User, Calculator, Palette, BarChart3 } from "lucide-react";
+import { User, Calculator, Palette, BarChart3 } from "lucide-react";
+import kvadredLogo from "@/assets/kvadred-logo.png";
 import { Link } from "react-router-dom";
 import OwnerCalculator from "@/components/app/OwnerCalculator";
 import DesignerStudio from "@/components/app/DesignerStudio";
@@ -30,8 +31,8 @@ const AppDashboard = () => {
       <nav className="sticky top-0 z-50 border-b border-border bg-card shadow-soft">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <Building2 className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold text-foreground">RenoPlan</span>
+            <img src={kvadredLogo} alt="Kvadred logo" className="h-7 w-7 object-contain" />
+            <span className="text-lg font-bold text-foreground">Kvadred</span>
           </Link>
           <div className="flex items-center gap-1">
             {tabs.map((tab) => (
