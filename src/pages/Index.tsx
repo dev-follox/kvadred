@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion, type Easing } from "framer-motion";
-import { Building2, Calculator, Palette, BarChart3, Users, Clock, CheckCircle2, Star, ArrowRight, Home, Wrench, ShieldCheck } from "lucide-react";
+import { Calculator, Palette, BarChart3, Users, Clock, CheckCircle2, Star, ArrowRight, Home, Wrench, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-renovation.jpg";
+import kvadredLogo from "@/assets/kvadred-logo.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -73,11 +74,11 @@ const Index = () => {
       <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <Building2 className="h-7 w-7 text-primary" />
-            <span className="text-xl font-bold text-foreground">RenoPlan</span>
+            <img src={kvadredLogo} alt="Kvadred logo" className="h-8 w-8 object-contain" />
+            <span className="text-xl font-bold text-foreground">Kvadred</span>
           </div>
           <div className="hidden items-center gap-8 md:flex">
-            <a href="#problems" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Why RenoPlan</a>
+            <a href="#problems" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Why Kvadred</a>
             <a href="#solutions" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Features</a>
             <a href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
           </div>
@@ -248,10 +249,10 @@ const Index = () => {
       <footer className="border-t border-border bg-card py-12">
         <div className="container mx-auto flex flex-col items-center gap-4 px-4 text-center md:flex-row md:justify-between md:text-left">
           <div className="flex items-center gap-2">
-            <Building2 className="h-5 w-5 text-primary" />
-            <span className="font-bold text-foreground">RenoPlan</span>
+            <img src={kvadredLogo} alt="Kvadred logo" className="h-6 w-6 object-contain" />
+            <span className="font-bold text-foreground">Kvadred</span>
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 RenoPlan. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2026 Kvadred. All rights reserved.</p>
         </div>
       </footer>
     </div>
