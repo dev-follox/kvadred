@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, type Easing } from "framer-motion";
 import { Calculator, Palette, BarChart3, CheckCircle2, Star, ArrowRight, Home, Wrench, Check } from "lucide-react";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-renovation.jpg";
 import kvadredLogo from "@/assets/kvadred-logo.png";
 import { useAuth } from "@/contexts/AuthContext";
+import DemoModal from "@/components/DemoModal";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -82,9 +84,11 @@ const plans = [
 
 const Index = () => {
   const { user } = useAuth();
+  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
       {/* Navbar */}
       <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -136,7 +140,7 @@ const Index = () => {
                     Start Free <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="text-base">Watch Demo</Button>
+                <Button size="lg" variant="outline" className="text-base" onClick={() => setDemoOpen(true)}>Watch Demo</Button>
               </motion.div>
               <motion.div variants={fadeUp} custom={3} className="flex items-center gap-6 pt-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-success" /> No credit card</span>
