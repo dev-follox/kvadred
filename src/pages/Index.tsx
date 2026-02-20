@@ -123,7 +123,7 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="gradient-hero absolute inset-0" />
+        <div className="gradient-hero absolute inset-0 pointer-events-none" />
         <div className="container mx-auto px-4 py-20 md:py-32">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div initial="hidden" animate="visible" className="space-y-6">
@@ -140,7 +140,7 @@ const Index = () => {
                     Start Free <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="text-base" onClick={() => setDemoOpen(true)}>Watch Demo</Button>
+                <Button size="lg" variant="outline" className="text-base" onClick={() => setDemoOpen(true)}>Try Demo</Button>
               </motion.div>
               <motion.div variants={fadeUp} custom={3} className="flex items-center gap-6 pt-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-success" /> No credit card</span>
