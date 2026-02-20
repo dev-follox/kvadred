@@ -14,16 +14,325 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          id: string
+          ip_address: string | null
+          resource_id: string | null
+          resource_type: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          resource_id?: string | null
+          resource_type?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          resource_id?: string | null
+          resource_type?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      checklist_items: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          is_completed: boolean | null
+          item_text: string
+          phase: number
+          project_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          is_completed?: boolean | null
+          item_text: string
+          phase: number
+          project_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          is_completed?: boolean | null
+          item_text?: string
+          phase?: number
+          project_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "checklist_items_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_settings: {
+        Row: {
+          created_at: string
+          frequency: string | null
+          id: string
+          monthly_summary: boolean | null
+          password_reset: boolean | null
+          payment_confirmation: boolean | null
+          project_milestone: boolean | null
+          renewal_reminder: boolean | null
+          team_invitation: boolean | null
+          trial_ending: boolean | null
+          updated_at: string
+          user_id: string
+          welcome_email: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          frequency?: string | null
+          id?: string
+          monthly_summary?: boolean | null
+          password_reset?: boolean | null
+          payment_confirmation?: boolean | null
+          project_milestone?: boolean | null
+          renewal_reminder?: boolean | null
+          team_invitation?: boolean | null
+          trial_ending?: boolean | null
+          updated_at?: string
+          user_id: string
+          welcome_email?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          frequency?: string | null
+          id?: string
+          monthly_summary?: boolean | null
+          password_reset?: boolean | null
+          payment_confirmation?: boolean | null
+          project_milestone?: boolean | null
+          renewal_reminder?: boolean | null
+          team_invitation?: boolean | null
+          trial_ending?: boolean | null
+          updated_at?: string
+          user_id?: string
+          welcome_email?: boolean | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          company_name: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+          website_url: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+          website_url?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          client_name: string | null
+          created_at: string
+          estimated_budget_max: number | null
+          estimated_budget_min: number | null
+          estimated_weeks_max: number | null
+          estimated_weeks_min: number | null
+          id: string
+          is_public: boolean | null
+          name: string
+          notes: string | null
+          project_type: string | null
+          quality_level: string | null
+          renovation_scope: string[] | null
+          square_footage: number | null
+          status: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          client_name?: string | null
+          created_at?: string
+          estimated_budget_max?: number | null
+          estimated_budget_min?: number | null
+          estimated_weeks_max?: number | null
+          estimated_weeks_min?: number | null
+          id?: string
+          is_public?: boolean | null
+          name?: string
+          notes?: string | null
+          project_type?: string | null
+          quality_level?: string | null
+          renovation_scope?: string[] | null
+          square_footage?: number | null
+          status?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          client_name?: string | null
+          created_at?: string
+          estimated_budget_max?: number | null
+          estimated_budget_min?: number | null
+          estimated_weeks_max?: number | null
+          estimated_weeks_min?: number | null
+          id?: string
+          is_public?: boolean | null
+          name?: string
+          notes?: string | null
+          project_type?: string | null
+          quality_level?: string | null
+          renovation_scope?: string[] | null
+          square_footage?: number | null
+          status?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          cancel_at_period_end: boolean | null
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          plan: Database["public"]["Enums"]["plan_type"]
+          status: string | null
+          stripe_customer_id: string | null
+          stripe_price_id: string | null
+          stripe_subscription_id: string | null
+          trial_end: string | null
+          trial_start: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_price_id?: string | null
+          stripe_subscription_id?: string | null
+          trial_end?: string | null
+          trial_start?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_price_id?: string | null
+          stripe_subscription_id?: string | null
+          trial_end?: string | null
+          trial_start?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          plan: Database["public"]["Enums"]["plan_type"]
+          role: Database["public"]["Enums"]["app_role"]
+          trial_ends_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          role?: Database["public"]["Enums"]["app_role"]
+          trial_ends_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          role?: Database["public"]["Enums"]["app_role"]
+          trial_ends_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_plan: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["plan_type"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "owner" | "designer" | "company" | "admin"
+      plan_type: "free" | "owner_paid" | "designer" | "company"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +459,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["owner", "designer", "company", "admin"],
+      plan_type: ["free", "owner_paid", "designer", "company"],
+    },
   },
 } as const
