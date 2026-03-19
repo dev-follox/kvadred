@@ -176,7 +176,8 @@ Deno.serve(async (req) => {
         { name: "КерамикаПро", desc: "Плитка и керамогранит" },
       ];
       for (const fs of fakeShops) {
-        const fsUserId = await createUser(fs.name.toLowerCase().replace(/[^a-zа-я]/g, "") + "@test.kz", "Test2024!", { full_name: fs.name, role: "company", shop_name: fs.name });
+        const slug = fs.name === "Мебель & Стиль" ? "mebel-style" : "ceramica-pro";
+        const fsUserId = await createUser(slug + "@test.kz", "Test2024!", { full_name: fs.name, role: "company", shop_name: fs.name });
         if (fsUserId) {
           await new Promise(r => setTimeout(r, 500));
           const { data: fsShop } = await admin.from("shops").select("id").eq("user_id", fsUserId).single();
