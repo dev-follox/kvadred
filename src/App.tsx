@@ -9,8 +9,6 @@ import Index from "./pages/Index";
 import AppDashboard from "./pages/AppDashboard";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
-import Account from "./pages/Account";
-import Pricing from "./pages/Pricing";
 import AdminConsole from "./pages/AdminConsole";
 import NotFound from "./pages/NotFound";
 
@@ -27,10 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/pricing" element={<Pricing />} />
             <Route path="/app" element={<ProtectedRoute><AppDashboard /></ProtectedRoute>} />
-            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-            <Route path="/account/:tab" element={<ProtectedRoute><Account /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminConsole /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
