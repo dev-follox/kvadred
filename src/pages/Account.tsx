@@ -13,7 +13,8 @@ import { ArrowLeft, User, CreditCard, Settings, Bell } from "lucide-react";
 import kvadredLogo from "@/assets/kvadred-logo.png";
 
 export default function Account() {
-  const { user, signOut, planType } = useAuth();
+  const { user, signOut, userRole } = useAuth();
+  const planType = userRole?.plan || "free";
   const { toast } = useToast();
   const navigate = useNavigate();
   const [saving, setSaving] = useState(false);
