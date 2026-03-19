@@ -43,6 +43,9 @@ export default function Index() {
             <Link to="/auth?mode=signup">
               <Button size="lg" className="gradient-primary text-primary-foreground text-base">Начать бесплатно <ArrowRight className="ml-2 h-4 w-4" /></Button>
             </Link>
+            <Button size="lg" variant="outline" className="text-base" onClick={() => setDemoOpen(true)}>
+              <Play className="mr-2 h-4 w-4" /> Попробовать демо
+            </Button>
           </motion.div>
           <motion.div variants={fadeUp} custom={3} initial="hidden" animate="visible" className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-primary" /> Для дизайнеров бесплатно</span>
