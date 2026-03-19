@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Store, Users, Calculator, TrendingUp, Shield, Box, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Store, Users, Calculator, TrendingUp, Shield, Box, CheckCircle2, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import kvadredLogo from "@/assets/kvadred-logo.png";
+import DemoPreview from "@/components/landing/DemoPreview";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
