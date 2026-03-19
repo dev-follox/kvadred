@@ -19,8 +19,8 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   refreshRole: () => Promise<void>;
   isAdmin: boolean;
-  isPaid: boolean;
-  planType: PlanType;
+  isShop: boolean;
+  isDesigner: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -75,12 +75,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await supabase.auth.signOut();
   };
 
-  const planType: PlanType = userRole?.plan ?? "free";
   const isAdmin = userRole?.role === "admin";
-  const isPaid = planType !== "free";
+  const isShop = userRole?.role === "company";
+  const isDesigner = userRole?.role === "designer";
 
   return (
-    <AuthContext.Provider value={{ user, session, userRole, loading, signOut, refreshRole, isAdmin, isPaid, planType }}>
+    <AuthContext.Provider value={{ user, session, userRole, loading, signOut, refreshRole, isAdmin, isShop, isDesigner }}>
       {children}
     </AuthContext.Provider>
   );

@@ -47,6 +47,98 @@ export type Database = {
         }
         Relationships: []
       }
+      catalog_3d_files: {
+        Row: {
+          catalog_item_id: string | null
+          created_at: string
+          description: string | null
+          file_size_bytes: number | null
+          file_url: string | null
+          id: string
+          name: string
+          preview_image_url: string | null
+          shop_id: string
+        }
+        Insert: {
+          catalog_item_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_size_bytes?: number | null
+          file_url?: string | null
+          id?: string
+          name: string
+          preview_image_url?: string | null
+          shop_id: string
+        }
+        Update: {
+          catalog_item_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_size_bytes?: number | null
+          file_url?: string | null
+          id?: string
+          name?: string
+          preview_image_url?: string | null
+          shop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_3d_files_catalog_item_id_fkey"
+            columns: ["catalog_item_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_3d_files_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_items: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          preview_image_url: string | null
+          price: number | null
+          shop_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          preview_image_url?: string | null
+          price?: number | null
+          shop_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          preview_image_url?: string | null
+          price?: number | null
+          shop_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_items_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       checklist_items: {
         Row: {
           completed_at: string | null
@@ -81,6 +173,47 @@ export type Database = {
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gamification_rules: {
+        Row: {
+          bonus_increase_pct: number
+          created_at: string
+          id: string
+          is_active: boolean
+          months_required: number
+          rule_type: string
+          shop_id: string
+          threshold_value: number
+        }
+        Insert: {
+          bonus_increase_pct?: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          months_required?: number
+          rule_type?: string
+          shop_id: string
+          threshold_value?: number
+        }
+        Update: {
+          bonus_increase_pct?: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          months_required?: number
+          rule_type?: string
+          shop_id?: string
+          threshold_value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gamification_rules_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
             referencedColumns: ["id"]
           },
         ]
@@ -230,6 +363,161 @@ export type Database = {
           renovation_scope?: string[] | null
           square_footage?: number | null
           status?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sales: {
+        Row: {
+          amount: number
+          bonus_amount: number | null
+          bonus_pct: number | null
+          catalog_item_id: string | null
+          confirmed_at: string | null
+          created_at: string
+          designer_user_id: string
+          id: string
+          paid_at: string | null
+          payable_at: string | null
+          platform_commission: number | null
+          product_name: string
+          rejected_at: string | null
+          rejection_reason: string | null
+          sale_date: string
+          shop_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          bonus_amount?: number | null
+          bonus_pct?: number | null
+          catalog_item_id?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          designer_user_id: string
+          id?: string
+          paid_at?: string | null
+          payable_at?: string | null
+          platform_commission?: number | null
+          product_name: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          sale_date?: string
+          shop_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          bonus_amount?: number | null
+          bonus_pct?: number | null
+          catalog_item_id?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          designer_user_id?: string
+          id?: string
+          paid_at?: string | null
+          payable_at?: string | null
+          platform_commission?: number | null
+          product_name?: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          sale_date?: string
+          shop_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_catalog_item_id_fkey"
+            columns: ["catalog_item_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shop_designers: {
+        Row: {
+          base_bonus_pct: number
+          created_at: string
+          current_bonus_pct: number
+          designer_user_id: string
+          id: string
+          max_bonus_pct: number
+          shop_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          base_bonus_pct?: number
+          created_at?: string
+          current_bonus_pct?: number
+          designer_user_id: string
+          id?: string
+          max_bonus_pct?: number
+          shop_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          base_bonus_pct?: number
+          created_at?: string
+          current_bonus_pct?: number
+          designer_user_id?: string
+          id?: string
+          max_bonus_pct?: number
+          shop_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shop_designers_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shops: {
+        Row: {
+          created_at: string
+          description: string | null
+          gamification_enabled: boolean
+          id: string
+          logo_url: string | null
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          gamification_enabled?: boolean
+          id?: string
+          logo_url?: string | null
+          name?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          gamification_enabled?: boolean
+          id?: string
+          logo_url?: string | null
+          name?: string
           updated_at?: string
           user_id?: string
         }
