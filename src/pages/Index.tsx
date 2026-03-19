@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Store, Users, Calculator, TrendingUp, Shield, Box, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Store, Users, Calculator, TrendingUp, Shield, Box, CheckCircle2, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import kvadredLogo from "@/assets/kvadred-logo.png";
+import DemoPreview from "@/components/landing/DemoPreview";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,8 +12,11 @@ const fadeUp = {
 };
 
 export default function Index() {
+  const [demoOpen, setDemoOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
+      <DemoPreview open={demoOpen} onClose={() => setDemoOpen(false)} />
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
@@ -38,6 +43,9 @@ export default function Index() {
             <Link to="/auth?mode=signup">
               <Button size="lg" className="gradient-primary text-primary-foreground text-base">Начать бесплатно <ArrowRight className="ml-2 h-4 w-4" /></Button>
             </Link>
+            <Button size="lg" variant="outline" className="text-base" onClick={() => setDemoOpen(true)}>
+              <Play className="mr-2 h-4 w-4" /> Попробовать демо
+            </Button>
           </motion.div>
           <motion.div variants={fadeUp} custom={3} initial="hidden" animate="visible" className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-primary" /> Для дизайнеров бесплатно</span>
