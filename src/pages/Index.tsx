@@ -12,8 +12,11 @@ const fadeUp = {
 };
 
 export default function Index() {
+  const [demoOpen, setDemoOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
+      <DemoPreview open={demoOpen} onClose={() => setDemoOpen(false)} />
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
