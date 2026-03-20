@@ -33,7 +33,7 @@ export default function DesignerApp() {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="sticky top-0 z-50 border-b border-border bg-card shadow-soft">
+      <nav className="sticky top-0 z-50 border-b border-border bg-sidebar">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
             <img src={kvadredLogo} alt="Kvadred" className="h-7 w-7 object-contain" />
@@ -44,27 +44,27 @@ export default function DesignerApp() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative flex items-center gap-2 px-4 py-5 text-sm font-medium transition-colors ${activeTab === tab.id ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+                className={`relative flex items-center gap-2 px-4 py-5 text-sm font-medium transition-colors ${activeTab === tab.id ? "text-primary" : "text-secondary-alpha hover:text-foreground"}`}
               >
-                <tab.icon className="h-4 w-4" />
+                <tab.icon className="h-4 w-4" strokeWidth={1.5} />
                 <span className="hidden sm:inline">{tab.label}</span>
-                {activeTab === tab.id && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />}
+                {activeTab === tab.id && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />}
               </button>
             ))}
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 rounded-full hover:bg-muted transition-colors px-2 py-1">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              <button className="flex items-center gap-2 hover:bg-foreground/5 transition-colors px-2 py-1">
+                <div className="flex h-8 w-8 items-center justify-center bg-primary/10 text-sm font-semibold text-primary">
                   <User className="h-4 w-4" />
                 </div>
-                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                <ChevronDown className="h-4 w-4 text-secondary-alpha" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-52">
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-foreground truncate">{user?.email}</p>
-                <p className="text-xs text-muted-foreground">Дизайнер</p>
+                <p className="text-xs text-secondary-alpha">Дизайнер</p>
               </div>
               <DropdownMenuSeparator />
               {isAdmin && (

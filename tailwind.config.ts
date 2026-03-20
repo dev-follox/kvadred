@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"DM Mono"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -62,6 +63,8 @@ export default {
           DEFAULT: "hsl(var(--info))",
           foreground: "hsl(var(--info-foreground))",
         },
+        stone: "hsl(var(--stone))",
+        footer: "hsl(var(--footer))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
