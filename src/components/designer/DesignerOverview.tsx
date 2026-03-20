@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { TrendingUp } from "lucide-react";
 import GamificationBadge from "@/components/GamificationBadge";
 
 export default function DesignerOverview() {
@@ -38,8 +36,8 @@ export default function DesignerOverview() {
   }, [user]);
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Мой дашборд</h1>
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold text-foreground uppercase tracking-wide">Мой дашборд</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
@@ -48,56 +46,53 @@ export default function DesignerOverview() {
           { label: "К выплате", value: stats.payable },
           { label: "Выплачено", value: stats.paid, highlight: true },
         ].map((s, i) => (
-          <Card key={i}>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-muted-foreground">{s.label}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className={`text-2xl font-bold ${s.highlight ? "text-primary" : "text-foreground"}`}>
-                {s.value.toLocaleString()} ₸
-              </div>
-            </CardContent>
-          </Card>
+          <div key={i} className="bg-card border border-border p-6">
+            <div className="text-sm text-secondary-alpha mb-2">{s.label}</div>
+            <div className={`text-2xl font-bold font-mono ${s.highlight ? "text-primary" : "text-foreground"}`}>
+              {s.value.toLocaleString()} ₸
+            </div>
+          </div>
         ))}
       </div>
 
       {monthlyData.length > 0 && (
-        <Card>
-          <CardHeader><CardTitle>Заработок по месяцам</CardTitle></CardHeader>
-          <CardContent className="h-64">
+        <div className="bg-card border border-border p-6">
+          <h2 className="text-lg font-semibold text-foreground mb-4 uppercase tracking-wide">Заработок по месяцам</h2>
+          <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyData}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip formatter={(value: number) => [`${value.toLocaleString()} ₸`, "Бонус"]} />
-                <Bar dataKey="amount" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+                <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 12 }} />
+                <YAxis tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 12 }} />
+                <Tooltip
+                  formatter={(value: number) => [`${value.toLocaleString()} ₸`, "Бонус"]}
+                  contentStyle={{ backgroundColor: '#243029', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
+                />
+                <Bar dataKey="amount" fill="hsl(140, 16%, 55%)" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       )}
 
       {shops.length > 0 && (
-        <Card>
-          <CardHeader><CardTitle>Мои магазины</CardTitle></CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {shops.map((s: any) => (
-                <div key={s.id} className="flex items-center justify-between p-3 rounded-lg border border-border">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium text-foreground">{s.shops?.name}</span>
-                    {s.shops?.gamification_enabled && <GamificationBadge />}
-                  </div>
-                  <div className="text-right">
-                    <span className="text-lg font-semibold text-primary">{s.current_bonus_pct}%</span>
-                    <p className="text-xs text-muted-foreground">макс. {s.max_bonus_pct}%</p>
-                  </div>
+        <div className="bg-card border border-border p-6">
+          <h2 className="text-lg font-semibold text-foreground mb-4 uppercase tracking-wide">Мои магазины</h2>
+          <div className="space-y-2">
+            {shops.map((s: any) => (
+              <div key={s.id} className="flex items-center justify-between p-3 border border-border">
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-foreground">{s.shops?.name}</span>
+                  {s.shops?.gamification_enabled && <GamificationBadge />}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                <div className="text-right">
+                  <span className="text-lg font-semibold text-primary font-mono">{s.current_bonus_pct}%</span>
+                  <p className="text-xs text-secondary-alpha">макс. {s.max_bonus_pct}%</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );
