@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useShop } from "@/hooks/useShop";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { CheckCircle, Clock, Users } from "lucide-react";
 
@@ -35,47 +34,42 @@ export default function ShopOverview() {
   }, [shopId]);
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Дашборд магазина</h1>
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold text-foreground uppercase tracking-wide">Дашборд магазина</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Выплачено бонусов</CardTitle>
-            <CheckCircle className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent><div className="text-2xl font-bold text-foreground">{stats.totalPaid.toLocaleString()} ₸</div></CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Ожидает выплаты</CardTitle>
-            <Clock className="h-4 w-4 text-amber-500" />
-          </CardHeader>
-          <CardContent><div className="text-2xl font-bold text-foreground">{stats.totalPending.toLocaleString()} ₸</div></CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Активных дизайнеров</CardTitle>
-            <Users className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent><div className="text-2xl font-bold text-foreground">{stats.activeDesigners}</div></CardContent>
-        </Card>
+        {[
+          { label: "Выплачено бонусов", value: `${stats.totalPaid.toLocaleString()} ₸`, icon: CheckCircle, iconCls: "text-primary" },
+          { label: "Ожидает выплаты", value: `${stats.totalPending.toLocaleString()} ₸`, icon: Clock, iconCls: "text-warning" },
+          { label: "Активных дизайнеров", value: String(stats.activeDesigners), icon: Users, iconCls: "text-primary" },
+        ].map((item, i) => (
+          <div key={i} className="bg-card border border-border p-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm text-secondary-alpha">{item.label}</span>
+              <item.icon className={`h-4 w-4 ${item.iconCls}`} strokeWidth={1.5} />
+            </div>
+            <div className="text-2xl font-bold text-foreground font-mono">{item.value}</div>
+          </div>
+        ))}
       </div>
 
       {monthlyData.length > 0 && (
-        <Card>
-          <CardHeader><CardTitle>Продажи по месяцам</CardTitle></CardHeader>
-          <CardContent className="h-72">
+        <div className="bg-card border border-border p-6">
+          <h2 className="text-lg font-semibold text-foreground mb-4 uppercase tracking-wide">Продажи по месяцам</h2>
+          <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyData}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                <XAxis dataKey="month" className="text-xs" />
-                <YAxis className="text-xs" />
-                <Tooltip formatter={(value: number) => [`${value.toLocaleString()} ₸`, "Сумма"]} />
-                <Bar dataKey="amount" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+                <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 12 }} />
+                <YAxis tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 12 }} />
+                <Tooltip
+                  formatter={(value: number) => [`${value.toLocaleString()} ₸`, "Сумма"]}
+                  contentStyle={{ backgroundColor: '#243029', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
+                />
+                <Bar dataKey="amount" fill="hsl(140, 16%, 55%)" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       )}
     </div>
   );

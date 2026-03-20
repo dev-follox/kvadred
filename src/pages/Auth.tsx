@@ -54,11 +54,7 @@ export default function Auth() {
       email,
       password,
       options: {
-        data: {
-          full_name: fullName,
-          role,
-          ...(role === "company" ? { shop_name: shopName } : {}),
-        },
+        data: { full_name: fullName, role, ...(role === "company" ? { shop_name: shopName } : {}) },
         emailRedirectTo: window.location.origin + "/app",
       },
     });
@@ -89,15 +85,12 @@ export default function Auth() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm text-secondary-alpha hover:text-foreground mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" /> На главную
         </Link>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-card border border-border rounded-2xl p-8 shadow-card"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          className="bg-card border border-border p-8">
           <div className="flex items-center justify-center gap-2 mb-8">
             <img src={kvadredLogo} alt="Kvadred" className="h-9 w-9 object-contain" />
             <span className="text-2xl font-bold text-foreground">Kvadred</span>
@@ -105,14 +98,14 @@ export default function Auth() {
 
           {mode === "forgot" ? (
             <>
-              <h1 className="text-2xl font-bold text-foreground text-center mb-2">Сброс пароля</h1>
-              <p className="text-muted-foreground text-center text-sm mb-6">Введите email для получения ссылки сброса</p>
+              <h1 className="text-2xl font-bold text-foreground text-center mb-2 uppercase tracking-wide">Сброс пароля</h1>
+              <p className="text-secondary-alpha text-center text-sm mb-6">Введите email для получения ссылки сброса</p>
               <form onSubmit={handleForgot} className="space-y-4">
                 <div>
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" required className="mt-1" />
                 </div>
-                <Button type="submit" className="w-full gradient-primary text-primary-foreground" disabled={loading}>
+                <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? "Отправка..." : "Отправить ссылку"}
                 </Button>
               </form>
@@ -122,16 +115,16 @@ export default function Auth() {
             </>
           ) : (
             <>
-              <div className="flex bg-muted rounded-lg p-1 mb-6">
+              <div className="flex border-b border-border mb-6">
                 <button
                   onClick={() => setMode("signin")}
-                  className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${mode === "signin" ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`flex-1 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px ${mode === "signin" ? "border-primary text-foreground" : "border-transparent text-secondary-alpha hover:text-foreground"}`}
                 >
                   Вход
                 </button>
                 <button
                   onClick={() => setMode("signup")}
-                  className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${mode === "signup" ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`flex-1 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px ${mode === "signup" ? "border-primary text-foreground" : "border-transparent text-secondary-alpha hover:text-foreground"}`}
                 >
                   Регистрация
                 </button>
@@ -142,20 +135,14 @@ export default function Auth() {
                   <div>
                     <Label className="mb-2 block">Я регистрируюсь как</Label>
                     <div className="grid grid-cols-2 gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setRole("company")}
-                        className={`flex flex-col items-center gap-2 rounded-xl border-2 p-4 transition-all ${role === "company" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
-                      >
-                        <Store className={`h-6 w-6 ${role === "company" ? "text-primary" : "text-muted-foreground"}`} />
+                      <button type="button" onClick={() => setRole("company")}
+                        className={`flex flex-col items-center gap-2 border-2 p-4 transition-all ${role === "company" ? "border-primary bg-primary/5" : "border-border hover:border-foreground/20"}`}>
+                        <Store className={`h-6 w-6 ${role === "company" ? "text-primary" : "text-stone"}`} strokeWidth={1.5} />
                         <span className="text-sm font-medium">Магазин</span>
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setRole("designer")}
-                        className={`flex flex-col items-center gap-2 rounded-xl border-2 p-4 transition-all ${role === "designer" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
-                      >
-                        <Palette className={`h-6 w-6 ${role === "designer" ? "text-primary" : "text-muted-foreground"}`} />
+                      <button type="button" onClick={() => setRole("designer")}
+                        className={`flex flex-col items-center gap-2 border-2 p-4 transition-all ${role === "designer" ? "border-primary bg-primary/5" : "border-border hover:border-foreground/20"}`}>
+                        <Palette className={`h-6 w-6 ${role === "designer" ? "text-primary" : "text-stone"}`} strokeWidth={1.5} />
                         <span className="text-sm font-medium">Дизайнер</span>
                       </button>
                     </div>
@@ -178,7 +165,7 @@ export default function Auth() {
                     <Label htmlFor="password">Пароль</Label>
                     <div className="relative mt-1">
                       <Input id="password" type={showPassword ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="Минимум 8 символов" required className="pr-10" />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone hover:text-foreground">
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
@@ -187,7 +174,7 @@ export default function Auth() {
                     <Label htmlFor="confirm">Подтвердите пароль</Label>
                     <Input id="confirm" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Повторите пароль" required className="mt-1" />
                   </div>
-                  <Button type="submit" className="w-full gradient-primary text-primary-foreground h-11" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={loading}>
                     {loading ? "Создание..." : "Зарегистрироваться"}
                   </Button>
                 </form>
@@ -201,7 +188,7 @@ export default function Auth() {
                     <Label htmlFor="password">Пароль</Label>
                     <div className="relative mt-1">
                       <Input id="password" type={showPassword ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="Ваш пароль" required className="pr-10" />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone hover:text-foreground">
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
@@ -211,7 +198,7 @@ export default function Auth() {
                       Забыли пароль?
                     </button>
                   </div>
-                  <Button type="submit" className="w-full gradient-primary text-primary-foreground h-11" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={loading}>
                     {loading ? "Вход..." : "Войти"}
                   </Button>
                 </form>
