@@ -134,7 +134,7 @@ export default function Index() {
                   <li key={i} className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-stone flex-shrink-0" />{f}</li>
                 ))}
               </ul>
-              <Link to="/auth?mode=signup"><Button variant="outline" className="w-full">Зарегистрироваться</Button></Link>
+              
             </motion.div>
           </div>
         </div>
