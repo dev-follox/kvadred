@@ -26,10 +26,7 @@ export default function Index() {
             <img src={kvadredLogo} alt="Kvadred" className="h-8 w-8 object-contain" />
             <span className="text-xl font-bold text-foreground">Kvadred</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/auth"><Button variant="ghost" size="sm">Войти</Button></Link>
-            <Link to="/auth?mode=signup"><Button size="sm">Зарегистрироваться</Button></Link>
-          </div>
+          <div className="flex items-center gap-3" />
         </div>
       </header>
 
