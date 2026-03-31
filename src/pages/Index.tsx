@@ -114,7 +114,7 @@ export default function Index() {
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">Популярный</span>
               <Store className="h-7 w-7 text-primary mx-auto mb-4" strokeWidth={1.5} />
               <h3 className="text-lg font-bold mb-2 text-foreground uppercase">Для магазинов</h3>
-              <div className="text-4xl font-bold text-primary font-mono mb-1">25 000 ₸<span className="text-base font-normal text-secondary-alpha">/мес</span></div>
+              <div className="text-4xl font-bold text-primary font-mono mb-1"><div className="text-4xl font-bold text-primary font-mono mb-1">45 000 ₸<span className="text-base font-normal text-secondary-alpha">/мес</span></div><span className="text-base font-normal text-secondary-alpha">/мес</span></div>
               <p className="text-sm text-secondary-alpha mb-6">+ 5% комиссия с каждой выплаты бонуса</p>
               <ul className="text-sm text-left space-y-3 mb-8">
                 {["Полный доступ ко всем функциям", "Неограниченное количество дизайнеров", "Каталог товаров и 3D моделей", "Геймификация и автоматический расчёт", "Аналитика и отчёты"].map((f, i) => (
