@@ -26,10 +26,7 @@ export default function Index() {
             <img src={kvadredLogo} alt="Kvadred" className="h-8 w-8 object-contain" />
             <span className="text-xl font-bold text-foreground">Kvadred</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/auth"><Button variant="ghost" size="sm">Войти</Button></Link>
-            <Link to="/auth?mode=signup"><Button size="sm">Зарегистрироваться</Button></Link>
-          </div>
+          <div className="flex items-center gap-3" />
         </div>
       </header>
 
@@ -47,9 +44,7 @@ export default function Index() {
             Прозрачные выплаты, автоматический учёт бонусов и&nbsp;мотивация дизайнеров — всё в&nbsp;одной платформе для магазинов интерьера
           </motion.p>
           <motion.div variants={fadeUp} custom={2} initial="hidden" animate="visible" className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/auth?mode=signup">
-              <Button size="lg">Начать бесплатно <ArrowRight className="ml-2 h-4 w-4" /></Button>
-            </Link>
+            
             <Button size="lg" variant="outline" onClick={() => setDemoOpen(true)}>
               <Play className="mr-2 h-4 w-4" /> Попробовать демо
             </Button>
@@ -119,14 +114,14 @@ export default function Index() {
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">Популярный</span>
               <Store className="h-7 w-7 text-primary mx-auto mb-4" strokeWidth={1.5} />
               <h3 className="text-lg font-bold mb-2 text-foreground uppercase">Для магазинов</h3>
-              <div className="text-4xl font-bold text-primary font-mono mb-1">25 000 ₸<span className="text-base font-normal text-secondary-alpha">/мес</span></div>
-              <p className="text-sm text-secondary-alpha mb-6">+ 5% комиссия с каждой выплаты бонуса</p>
+              <div className="text-4xl font-bold text-primary font-mono mb-1"><div className="text-4xl font-bold text-primary font-mono mb-1">45 000 ₸<span className="text-base font-normal text-secondary-alpha">/мес</span></div><span className="text-base font-normal text-secondary-alpha">/мес</span></div>
+              <p className="text-sm text-secondary-alpha mb-6"><p className="text-sm text-secondary-alpha mb-6">+ 2% комиссия с каждой выплаты бонуса</p></p>
               <ul className="text-sm text-left space-y-3 mb-8">
                 {["Полный доступ ко всем функциям", "Неограниченное количество дизайнеров", "Каталог товаров и 3D моделей", "Геймификация и автоматический расчёт", "Аналитика и отчёты"].map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />{f}</li>
                 ))}
               </ul>
-              <Link to="/auth?mode=signup"><Button className="w-full">Начать</Button></Link>
+              
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="bg-background border border-border p-8">
@@ -139,7 +134,7 @@ export default function Index() {
                   <li key={i} className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-stone flex-shrink-0" />{f}</li>
                 ))}
               </ul>
-              <Link to="/auth?mode=signup"><Button variant="outline" className="w-full">Зарегистрироваться</Button></Link>
+              
             </motion.div>
           </div>
         </div>
