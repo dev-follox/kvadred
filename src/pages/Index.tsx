@@ -121,7 +121,7 @@ export default function Index() {
                   <li key={i} className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />{f}</li>
                 ))}
               </ul>
-              <Link to="/auth?mode=signup"><Button className="w-full">Начать</Button></Link>
+              
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="bg-background border border-border p-8">
