@@ -44,9 +44,7 @@ export default function Index() {
             Прозрачные выплаты, автоматический учёт бонусов и&nbsp;мотивация дизайнеров — всё в&nbsp;одной платформе для магазинов интерьера
           </motion.p>
           <motion.div variants={fadeUp} custom={2} initial="hidden" animate="visible" className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/auth?mode=signup">
-              <Button size="lg">Начать бесплатно <ArrowRight className="ml-2 h-4 w-4" /></Button>
-            </Link>
+            
             <Button size="lg" variant="outline" onClick={() => setDemoOpen(true)}>
               <Play className="mr-2 h-4 w-4" /> Попробовать демо
             </Button>
