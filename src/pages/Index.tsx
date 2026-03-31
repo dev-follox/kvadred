@@ -115,7 +115,7 @@ export default function Index() {
               <Store className="h-7 w-7 text-primary mx-auto mb-4" strokeWidth={1.5} />
               <h3 className="text-lg font-bold mb-2 text-foreground uppercase">Для магазинов</h3>
               <div className="text-4xl font-bold text-primary font-mono mb-1"><div className="text-4xl font-bold text-primary font-mono mb-1">45 000 ₸<span className="text-base font-normal text-secondary-alpha">/мес</span></div><span className="text-base font-normal text-secondary-alpha">/мес</span></div>
-              <p className="text-sm text-secondary-alpha mb-6">+ 5% комиссия с каждой выплаты бонуса</p>
+              <p className="text-sm text-secondary-alpha mb-6"><p className="text-sm text-secondary-alpha mb-6">+ 2% комиссия с каждой выплаты бонуса</p></p>
               <ul className="text-sm text-left space-y-3 mb-8">
                 {["Полный доступ ко всем функциям", "Неограниченное количество дизайнеров", "Каталог товаров и 3D моделей", "Геймификация и автоматический расчёт", "Аналитика и отчёты"].map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />{f}</li>
